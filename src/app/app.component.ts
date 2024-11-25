@@ -1,13 +1,27 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'employee-message-app';
+  // Declare the properties
+  newMessage: string = '';
+  messages: string[] = [];
+
+  // Method to add a new message
+  addMessage() {
+    if (this.newMessage.trim()) {
+      this.messages.push(this.newMessage);
+      this.newMessage = '';  // Clear the input after adding
+    }
+  }
+
+  // Method to remove the last message
+  removeLastMessage() {
+    if (this.messages.length > 0) {
+      this.messages.pop();
+    }
+  }
 }
